@@ -1,6 +1,5 @@
 import { GymRepository } from '@/repositories/gym-repository'
 import { Gym } from '@prisma/client'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface SearchGymsUseCaseRequest {
   query: string

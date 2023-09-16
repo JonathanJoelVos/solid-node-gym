@@ -24,35 +24,38 @@ describe('Search Gyms Use Case', () => {
     })
 
     const { gyms } = await sut.execute({
-      query: 'jojo academy',
-      page: 2,
+      query: 'jojo',
+      page: 1,
     })
 
     expect(gyms).toHaveLength(1)
     expect(gyms).toEqual([
       expect.objectContaining({
-        gym_id: 'jojo academy',
+        title: 'jojo academy',
       }),
     ])
   })
-  it.skip('should be able fetch paginated check-in history', async () => {
+  it('should be able fetch paginated gyms search', async () => {
     for (let i = 1; i <= 22; i++) {
       await gymsRepository.create({
         latitude: 0,
         longitude: 0,
-        title: `gym-${i}`,
+        title: `jojo gym-${i}`,
       })
     }
 
     const { gyms } = await sut.execute({
-      query: 'gym-22',
+      query: 'jojo',
       page: 2,
     })
 
-    expect(gyms).toHaveLength(1)
+    expect(gyms).toHaveLength(2)
     expect(gyms).toEqual([
       expect.objectContaining({
-        gym_id: 'gym-22',
+        title: 'jojo gym-21',
+      }),
+      expect.objectContaining({
+        title: 'jojo gym-22',
       }),
     ])
   })
